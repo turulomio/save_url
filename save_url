@@ -1,0 +1,39 @@
+#!/usr/bin/python3
+from argparse import ArgumentParser, RawTextHelpFormatter
+from re import search
+from subprocess import run, PIPE
+from datetime import date,datetime
+
+__version__="0.1.0"
+__versiondate__=date(2019,8,29)
+
+def dtnaive2string(dt, type=1):
+    if dt==None:
+        resultado="None"
+    elif type==1:
+            resultado="{}{}{} {}{}".format(dt.year, str(dt.month).zfill(2), str(dt.day).zfill(2), str(dt.hour).zfill(2), str(dt.minute).zfill(2))
+    return resultado
+
+parser=ArgumentParser(
+        prog='save_url', 
+        description="Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend.",
+        epilog="If you like this app, please give me a star in https://github.com/turulomio/save_url."+ "\n" + "Developed by Mariano Muñoz 2015-{} \xa9".format( __versiondate__.year),
+        formatter_class=RawTextHelpFormatter
+        )
+parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
+parser.add_argument('url', help="Url to save")
+args=parser.parse_args()
+
+result=run("monolith '{}'".format(args.url), shell=True, stdout=PIPE)#, dtnaive2string(datetime.now()), "save_url"),shell=True)
+print(result.returncode)
+
+content=result.stdout.decode("UTF-8")
+
+match = search('<title>(.*?)</title>', content )
+title = match.group(1) if match else 'No title'
+print(title)
+
+filename="{} {}.html".format(dtnaive2string(datetime.now()), title)
+f=open(filename,"w")
+f.write(content)
+f.close()
