@@ -1,8 +1,13 @@
-What is save_url
-================
-Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend.
+What is save_url?
+=================
+It's a script to save and url in a single file with an automatic and structured name. It uses monolith as its backend.
 
-This book is interactive and lets you find your movies quickly in a book with your prefered movie images.
+Usage
+=====
+
+`save_url https://www.kde.org`
+
+You will get a file with your current datetime and the title of the page. This is my way of storing interesting things. For example: 20190829 0814 KDE Community Home - KDE.org.html
 
 Linux installation
 ==================
@@ -13,13 +18,6 @@ For the rest of distributions:
 
 - You need to install monolith from https://github.com/Y2Z/monolith/, setting the binary monolith in your binary path
 - You need to download save_url file and give it execution permissions
-
-Usage
-=====
-
-`save_url https://www.kde.org`
-
-You will get a file with your current datetime and the title of the page. This is my way of storing interesting things. For example: 20190829 0814 KDE Community Home - KDE.org.html
 
 Dependencies
 ============
