@@ -3,6 +3,8 @@ from argparse import ArgumentParser, RawTextHelpFormatter
 from re import search
 from subprocess import run, PIPE
 from datetime import date,datetime
+from colorama import Fore, Style
+from math import floor, pow, log
 
 __version__="0.1.0"
 __versiondate__=date(2019,8,29)
@@ -13,6 +15,11 @@ def dtnaive2string(dt, type=1):
     elif type==1:
             resultado="{}{}{} {}{}".format(dt.year, str(dt.month).zfill(2), str(dt.day).zfill(2), str(dt.hour).zfill(2), str(dt.minute).zfill(2))
     return resultado
+
+
+def humanizeFileSize(filesize):
+    p = int(floor(log(filesize, 2)/10))
+    return "%.2f %s" % (filesize/pow(1024,p), ['B','KB','MB','GB','TB','PB','EB','ZB','YB'][p])
 
 parser=ArgumentParser(
         prog='save_url', 
@@ -25,15 +32,23 @@ parser.add_argument('url', help="Url to save")
 args=parser.parse_args()
 
 result=run("monolith '{}'".format(args.url), shell=True, stdout=PIPE)#, dtnaive2string(datetime.now()), "save_url"),shell=True)
-print(result.returncode)
 
 content=result.stdout.decode("UTF-8")
 
 match = search('<title>(.*?)</title>', content )
 title = match.group(1) if match else 'No title'
-print(title)
 
 filename="{} {}.html".format(dtnaive2string(datetime.now()), title)
+filename=filename.replace("/","|")
+
 f=open(filename,"w")
 f.write(content)
 f.close()
+
+
+
+
+if len(content)==0 or title=="No title" or result.returncode!=0:
+    print(Fore.RED + Style.BRIGHT + "Something is wrong with saved file. Please Checkit" + Style.RESET_ALL)
+else:
+    print (Style.BRIGHT + "File '{}' ({}) saved correctly.".format(Fore.GREEN + filename + Fore.RESET, Fore.YELLOW + humanizeFileSize(len(content)) + Fore.RESET ) + Style.RESET_ALL)
