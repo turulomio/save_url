@@ -6,8 +6,8 @@ from datetime import date,datetime
 from colorama import Fore, Style
 from math import floor, pow, log
 
-__version__="0.1.0"
-__versiondate__=date(2019,8,29)
+__version__="0.3.0"
+__versiondate__=date(2019,9,25)
 
 def dtnaive2string(dt, type=1):
     if dt==None:
