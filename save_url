@@ -38,15 +38,12 @@ content=result.stdout.decode("UTF-8")
 match = search('<title>(.*?)</title>', content )
 title = match.group(1) if match else 'No title'
 
-filename="{} {}.html".format(dtnaive2string(datetime.now()), title)
+filename="{} {}.html".format(dtnaive2string(datetime.now()), title[:100])
 filename=filename.replace("/","|")
 
 f=open(filename,"w")
 f.write(content)
 f.close()
-
-
-
 
 if len(content)==0 or title=="No title" or result.returncode!=0:
     print(Fore.RED + Style.BRIGHT + "Something is wrong with saved file. Please Checkit" + Style.RESET_ALL)
