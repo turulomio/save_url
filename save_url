@@ -31,7 +31,7 @@ parser.add_argument('--version', action='version', version="{} ({})".format(__ve
 parser.add_argument('url', help="Url to save")
 args=parser.parse_args()
 
-result=run("monolith '{}'".format(args.url), shell=True, stdout=PIPE)#, dtnaive2string(datetime.now()), "save_url"),shell=True)
+result=run(["monolith", args.url], shell=False, stdout=PIPE)#, dtnaive2string(datetime.now()), "save_url"),shell=True)
 
 content=result.stdout.decode("UTF-8")
 
