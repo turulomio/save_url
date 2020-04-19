@@ -5,6 +5,7 @@ from subprocess import run, PIPE
 from datetime import date,datetime
 from colorama import Fore, Style
 from math import floor, pow, log
+from mechanize import Browser
 
 __version__="0.3.0"
 __versiondate__=date(2019,9,25)
@@ -21,25 +22,36 @@ def humanizeFileSize(filesize):
     p = int(floor(log(filesize, 2)/10))
     return "%.2f %s" % (filesize/pow(1024,p), ['B','KB','MB','GB','TB','PB','EB','ZB','YB'][p])
 
+def getTitle(url):
+    try:
+        br = Browser()
+        br.open(url)
+        title=br.title()
+        title=title.replace("\n","")
+        title=title.replace("/","_")
+        title=title.strip()
+        return title
+    except:
+        title="No title"
+    return title
+
 parser=ArgumentParser(
         prog='save_url', 
         description="Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend.",
-        epilog="If you like this app, please give me a star in https://github.com/turulomio/save_url."+ "\n" + "Developed by Mariano Muñoz 2015-{} \xa9".format( __versiondate__.year),
+        epilog="If you like this app, please give me a star in https://github.com/turulomio/save_url."+ "\n" + "Developed by Mariano Muñoz 2019-{} \xa9".format( __versiondate__.year),
         formatter_class=RawTextHelpFormatter
         )
 parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
 parser.add_argument('url', help="Url to save")
 args=parser.parse_args()
 
-result=run(["monolith", args.url], shell=False, stdout=PIPE)#, dtnaive2string(datetime.now()), "save_url"),shell=True)
 
+
+
+result=run(["monolith", args.url], shell=False, stdout=PIPE)
+title=getTitle(args.url)
 content=result.stdout.decode("UTF-8")
-
-match = search('<title>(.*?)</title>', content )
-title = match.group(1) if match else 'No title'
-
 filename="{} {}.html".format(dtnaive2string(datetime.now()), title[:100])
-filename=filename.replace("/","|")
 
 f=open(filename,"w")
 f.write(content)
