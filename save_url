@@ -7,8 +7,8 @@ from colorama import Fore, Style
 from math import floor, pow, log
 from mechanize import Browser
 
-__version__="0.3.0"
-__versiondate__=date(2019,9,25)
+__version__="0.4.0"
+__versiondate__=date(2020, 4, 19)
 
 def dtnaive2string(dt, type=1):
     if dt==None:
@@ -30,7 +30,6 @@ def getTitle(url):
         title=title.replace("\n","")
         title=title.replace("/","_")
         title=title.strip()
-        return title
     except:
         title="No title"
     return title

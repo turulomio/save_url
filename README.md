@@ -23,10 +23,15 @@ Dependencies
 ============
 * https://www.python.org/, as the main programming language.
 * https://github.com/Y2Z/monolith/, as the backend to save one url in a single file. Thank you :)
+* https://github.com/python-mechanize/mechanize, to get url title
 
 Changelog
 =========
 
+0.4.0
+-----
+- Script now uses mechanize to get web page title.
+
 0.1.0
 -----
-- Basic functionality
+- Basic functionality.
