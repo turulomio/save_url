@@ -22,6 +22,17 @@ def humanizeFileSize(filesize):
     p = int(floor(log(filesize, 2)/10))
     return "%.2f %s" % (filesize/pow(1024,p), ['B','KB','MB','GB','TB','PB','EB','ZB','YB'][p])
 
+def input_string(text):
+    while True:
+        res=input(Style.BRIGHT+text+": ")
+        try:
+            if res==None or res=="":
+                continue
+            res=str(res)
+            return res
+        except:
+            pass
+
 def getTitle(url):
     try:
         br = Browser()
@@ -31,7 +42,7 @@ def getTitle(url):
         title=title.replace("/","_")
         title=title.strip()
     except:
-        title="No title"
+        title=None
     return title
 
 parser=ArgumentParser(
@@ -49,6 +60,8 @@ args=parser.parse_args()
 
 result=run(["monolith", args.url], shell=False, stdout=PIPE)
 title=getTitle(args.url)
+if title is None:
+    title=input_string("I couldn't extract web page title. Please write it")
 content=result.stdout.decode("UTF-8")
 filename="{} {}.html".format(dtnaive2string(datetime.now()), title[:100])
 
@@ -56,7 +69,7 @@ f=open(filename,"w")
 f.write(content)
 f.close()
 
-if len(content)==0 or title=="No title" or result.returncode!=0:
+if len(content)==0 or result.returncode!=0:
     print(Fore.RED + Style.BRIGHT + "Something is wrong with saved file. Please Checkit" + Style.RESET_ALL)
 else:
     print (Style.BRIGHT + "File '{}' ({}) saved correctly.".format(Fore.GREEN + filename + Fore.RESET, Fore.YELLOW + humanizeFileSize(len(content)) + Fore.RESET ) + Style.RESET_ALL)
