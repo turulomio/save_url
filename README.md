@@ -28,6 +28,10 @@ Dependencies
 Changelog
 =========
 
+0.5.0
+-----
+- [#4] Script asks user if title hasn't been found.
+
 0.4.0
 -----
 - Script now uses mechanize to get web page title.
