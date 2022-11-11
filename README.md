@@ -27,9 +27,12 @@ Dependencies
 
 Changelog
 =========
+0.6.0 (2022-11-11)
+------------------
+-  Added --notime parameter to remove date and time in file name
 
-0.5.0
------
+0.5.0 (2020-07-08)
+-----------------
 - [#4] Script asks user if title hasn't been found.
 
 0.4.0
