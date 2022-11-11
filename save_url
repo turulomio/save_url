@@ -53,21 +53,21 @@ parser=ArgumentParser(
         )
 parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
 parser.add_argument('url', help="Url to save")
+parser.add_argument('--notime', help="Removes date and time from the beginning of the file name", action="store_true", default=False)
 args=parser.parse_args()
-
-
-
 
 result=run(["monolith", args.url], shell=False, stdout=PIPE)
 title=getTitle(args.url)
 if title is None:
     title=input_string("I couldn't extract web page title. Please write it")
 content=result.stdout.decode("UTF-8")
-filename="{} {}.html".format(dtnaive2string(datetime.now()), title[:100])
+if args.notime:
+    filename="{}.html".format(title[:114])
+else:
+    filename="{} {}.html".format(dtnaive2string(datetime.now()), title[:100])
 
-f=open(filename,"w")
-f.write(content)
-f.close()
+with open(filename,"w") as f:
+    f.write(content)
 
 if len(content)==0 or result.returncode!=0:
     print(Fore.RED + Style.BRIGHT + "Something is wrong with saved file. Please Checkit" + Style.RESET_ALL)
