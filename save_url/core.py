@@ -6,6 +6,7 @@ from gettext import translation
 from importlib.resources import files
 from math import floor, pow, log
 from mechanize import Browser
+from re import compile
 from save_url import __version__, __versiondate__
 from shutil import which
 from sys import exit
@@ -17,6 +18,11 @@ except:
     _=str
 def red(s):
         return Fore.RED + Style.BRIGHT + s + Style.RESET_ALL
+        
+def green(s):
+        return Fore.GREEN + Style.BRIGHT + s + Style.RESET_ALL
+def yellow(s):
+        return Fore.YELLOW+ Style.BRIGHT + s + Style.RESET_ALL
     
 
 def search_monolith():
@@ -54,7 +60,8 @@ def input_string(text):
         except:
             pass
 
-def getTitle(url):
+def getTitle(url, content):
+    #Tries to get it using mechanize
     try:
         br = Browser()
         br.open(url)
@@ -62,21 +69,33 @@ def getTitle(url):
         title=title.replace("\n","")
         title=title.replace("/","")
         title=title.strip()
+        print(yellow(_("Title was found with mechanize")))
     except Exception as e:
-        print(red(_("Error getting page title: {0}").format(e)))
+        print(red(_("Error getting page title with mechanize: {0}").format(e)))
         title=None
+        
+    #Tries to get it using re
+    if title is None:
+        pattern=compile("(?<=<title>)(.*?)(?=</title>)")
+        res=pattern.findall(content)
+        if len(res)>0:
+            title=res[0]
+            print(yellow(_("Title was found searching in <title> tag")))
+        else:
+            title=None
+            print(red(_("Error getting page title searching in <title> tag")))
     return title
 
 def console_save_url():
     parser=ArgumentParser(
             prog='save_url', 
-            description="Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend.",
-            epilog="If you like this app, please give me a star in https://github.com/turulomio/save_url."+ "\n" + "Developed by Mariano Muñoz 2019-{} \xa9".format( __versiondate__.year),
+            description=_("Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."),
+            epilog=_("If you like this app, please give me a star in https://github.com/turulomio/save_url.")+ "\n" + _("Developed by Mariano Muñoz 2019-{} ©").format( __versiondate__.year),
             formatter_class=RawTextHelpFormatter
             )
     parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
-    parser.add_argument('url', help="Url to save")
-    parser.add_argument('--notime', help="Removes date and time from the beginning of the file name", action="store_true", default=False)
+    parser.add_argument('url', help=_("Url to save"))
+    parser.add_argument('--notime', help=_("Removes date and time from the beginning of the file name"), action="store_true", default=False)
     args=parser.parse_args()
     save_url(args.url, args.notime)
 
@@ -85,11 +104,14 @@ def save_url(url, notime):
     init()
     search_monolith()
     
-    title=getTitle(url)
     result=run(["monolith", url], shell=False, stdout=PIPE)
-    if title is None:
-        title=input_string("I couldn't extract web page title. Please write it")
     content=result.stdout.decode("UTF-8")
+    
+    
+    title=getTitle(url, content)
+    
+    if title is None:
+        title=input_string(_("I couldn't extract web page title. Please write it"))
     if notime:
         filename="{}.html".format(title[:114])
     else:

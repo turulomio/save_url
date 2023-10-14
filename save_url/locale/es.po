@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TooManyFiles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-14 07:26+0200\n"
+"POT-Creation-Date: 2023-10-14 07:36+0200\n"
 "PO-Revision-Date: 2020-04-03 08:54+0200\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -20,18 +20,35 @@ msgstr ""
 "X-Generator: Lokalize 19.12.3\n"
 
 msgid "Monolith executable wasn't found in your system path"
-msgstr ""
+msgstr "El ejecutable de Monolith no fue encontrado en el path de tu sistema"
 
 msgid "Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith"
-msgstr ""
+msgstr "Monolith es una herramienta CLI para guardar páginas web completas como un único fichero HTML, que puedes encontrar en https://github.com/Y2Z/monolith"
 
 #, python-brace-format
 msgid "Error getting page title: {0}"
+msgstr "Error al encontrar el título de la página: {0}"
+
+msgid "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."
 msgstr ""
+
+msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
+msgstr ""
+
+msgid "Developed by Mariano Muñoz 2019-{} ©"
+msgstr ""
+
+msgid "Url to save"
+msgstr "Url a guardar"
+
+msgid "Removes date and time from the beginning of the file name"
+msgstr ""
+
+msgid "I couldn't extract web page title. Please write it"
+msgstr "No pude extraer el título de la página web. Por favor escríbalo"
 
 msgid "Something is wrong with saved file. Please Checkit"
 msgstr ""
 
 msgid "File '{}' ({}) saved correctly."
-msgstr ""
-
+msgstr "Fichero '{}' ({}) guardado correctamente."
