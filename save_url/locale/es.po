@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TooManyFiles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-14 07:36+0200\n"
+"POT-Creation-Date: 2023-10-14 08:23+0200\n"
 "PO-Revision-Date: 2020-04-03 08:54+0200\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -25,9 +25,18 @@ msgstr "El ejecutable de Monolith no fue encontrado en el path de tu sistema"
 msgid "Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith"
 msgstr "Monolith es una herramienta CLI para guardar páginas web completas como un único fichero HTML, que puedes encontrar en https://github.com/Y2Z/monolith"
 
+msgid "Title was found with mechanize"
+msgstr "El título fue encontrado con mechanize"
+
 #, python-brace-format
-msgid "Error getting page title: {0}"
-msgstr "Error al encontrar el título de la página: {0}"
+msgid "Error getting page title with mechanize: {0}"
+msgstr ""
+
+msgid "Title was found searching in <title> tag"
+msgstr "El título fue encontrado buscando en la etiqueta <title>"
+
+msgid "Error getting page title searching in <title> tag"
+msgstr ""
 
 msgid "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."
 msgstr ""
@@ -52,3 +61,7 @@ msgstr ""
 
 msgid "File '{}' ({}) saved correctly."
 msgstr "Fichero '{}' ({}) guardado correctamente."
+
+#, python-brace-format
+#~ msgid "Error getting page title: {0}"
+#~ msgstr "Error al encontrar el título de la página: {0}"

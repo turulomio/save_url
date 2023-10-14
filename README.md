@@ -17,7 +17,7 @@ If you use Gentoo, you can find the ebuild in https://github.com/turulomio/mypor
 For the rest of distributions:
 
 - You need to install monolith from https://github.com/Y2Z/monolith/, setting the binary monolith in your binary path
-- You need to download save_url file and give it execution permissions
+- pip install save_url
 
 Dependencies
 ============
@@ -27,6 +27,11 @@ Dependencies
 
 Changelog
 =========
+0.7.0 (2023-10-14)
+------------------
+- Improved method to search title
+- Code is converted to a python module
+
 0.6.0 (2022-11-11)
 ------------------
 -  Added --notime parameter to remove date and time in file name

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "save-url"
-version = "0.6.0"
+version = "0.7.0"
 description = "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend"
 authors = ["turulomio <turulomio@yahoo.es>"]
 license = "GPL-3"
@@ -10,7 +10,6 @@ readme = "README.md"
 python = "^3.11"
 colorama = "^0.4.6"
 mechanize = "^0.4.8"
-
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.24.1"
