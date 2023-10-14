@@ -16,14 +16,15 @@ try:
     _=t.gettext
 except:
     _=str
+
 def red(s):
         return Fore.RED + Style.BRIGHT + s + Style.RESET_ALL
         
 def green(s):
         return Fore.GREEN + Style.BRIGHT + s + Style.RESET_ALL
+
 def yellow(s):
         return Fore.YELLOW+ Style.BRIGHT + s + Style.RESET_ALL
-    
 
 def search_monolith():
     """
@@ -34,8 +35,7 @@ def search_monolith():
         print(red(_("Monolith executable wasn't found in your system path")))
         print(red(_("Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith")))
         exit(2) 
-    print(r)
-    
+    return r
 
 def dtnaive2string(dt, type=1):
     if dt==None:
@@ -102,9 +102,9 @@ def console_save_url():
 
 def save_url(url, notime):
     init()
-    search_monolith()
+    monolith_path=search_monolith()
     
-    result=run(["monolith", url], shell=False, stdout=PIPE)
+    result=run([monolith_path, url], shell=False, stdout=PIPE)
     content=result.stdout.decode("UTF-8")
     
     
