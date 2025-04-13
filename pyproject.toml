@@ -1,6 +1,6 @@
 [project]
 name = "save_url"
-version = "0.7.0dev"
+version = "1.0.0"
 description = "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend"
 authors = [
     {name = "turulomio",email = "turulomio@yahoo.es"}
