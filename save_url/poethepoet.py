@@ -27,16 +27,15 @@ def release():
 """.format(__version__))
 
 
-def monolith_ebuid():
-    print("""Procedure to update monolith ebuild
-    * emerge -v cargo-ebuild
+def monolith_ebuild():
+    v="2.10.1"
+    print(f"""Procedure to update monolith ebuild
+    * emerge -v pycargoebuild
     * cd /tmp
     * git clone https://github.com/Y2Z/monolith
     * cd monolith
-    * cargo ebuild --noaudit
-    * Move ebuild to myportage
-    * Edit new ebuild adding in a new line of src_uri: https://github.com/Y2Z/monolith/archive/v2.7.0.tar.gz -> ${P}.tar.gz"
-
-    
-    
+    * git checkout v{v}
+    * pycargoebuild
+    * mv monolith-{v}.ebuild /var/db/repos/myportage/www-apps/monolith/
+    * Edit new ebuild adding in a new line of src_uri: https://github.com/Y2Z/monolith/archive/v{v}.tar.gz -> ${{P}}.tar.gz"
 """)
