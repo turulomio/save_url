@@ -1,32 +1,38 @@
-[tool.poetry]
-name = "save-url"
-version = "0.7.0"
+[project]
+name = "save_url"
+version = "0.7.0dev"
 description = "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend"
-authors = ["turulomio <turulomio@yahoo.es>"]
-license = "GPL-3"
+authors = [
+    {name = "turulomio",email = "turulomio@yahoo.es"}
+]
+license = {text = "GPL-3.0-only"}
 readme = "README.md"
+requires-python = ">=3.11,<4.0.0"
+dependencies = [
+    "mechanize >=0.4.8",
+    "colorama (>=0.4.6,<0.5.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-colorama = "^0.4.6"
-mechanize = "^0.4.8"
+[tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poethepoet = "^0.24.1"
+poetry = "^2.1.2"
+poethepoet = "^0.33.1"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-save_url = "save_url.core:console_save_url"
-
-[tool.poe.tasks]
-release = { script = "save_url.poethepoet:release" }
-translate = { script = "save_url.poethepoet:translate" }
-monolith_ebuild = { script = "save_url.poethepoet:monolith_ebuild" }
 
 [project.urls]
 homepage = "https://github.com/turulomio/save_url/"
 repository = "https://github.com/turulomio/save_url/"
 changelog = "https://github.com/turulomio/save_url#changelog"
+
+[tool.poetry.scripts]
+save_url = 'save_url.core:console_save_url'
+
+
+[tool.poe.tasks]
+release = { script = "save_url.poethepoet:release" }
+translate = { script = "save_url.poethepoet:translate" }
+monolith_ebuild = { script = "save_url.poethepoet:monolith_ebuild" }
