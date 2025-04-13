@@ -27,6 +27,11 @@ Dependencies
 
 Changelog
 =========
+1.0.0 (2025-04-13)
+------------------
+- Updated to poetry>2.0.0
+- Updated poe monolith_ebuild
+
 0.7.0 (2023-10-14)
 ------------------
 - Improved method to search title

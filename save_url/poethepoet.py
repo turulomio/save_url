@@ -5,6 +5,7 @@ def translate():
         #es
         system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o save_url/locale/save_url.pot save_url/*.py")
         system("msgmerge -N --no-wrap -U save_url/locale/es.po save_url/locale/save_url.pot")
+        system("msgmerge -N --no-wrap -U save_url/locale/en.po save_url/locale/save_url.pot")
         system("msgfmt -cv -o save_url/locale/es/LC_MESSAGES/save_url.mo save_url/locale/es.po")
         system("msgfmt -cv -o save_url/locale/en/LC_MESSAGES/save_url.mo save_url/locale/en.po")
 
