@@ -1,17 +1,17 @@
-# Spanish translations for PACKAGE package
-# Traducciones al español para el paquete PACKAGE.
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for save_url package.
+# Traducciones al español para el paquete save_url.
+# Copyright (C) 2025 THE save_url'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the save_url package.
 #
-# root <turulomio@yahoo.es>, 2015, 2020.
+# Turulomio <turulomio@yahoo.es>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: TooManyFiles\n"
+"Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-14 08:23+0200\n"
-"PO-Revision-Date: 2020-04-03 08:54+0200\n"
-"Last-Translator: trabajo <turulomio@yahoo.es>\n"
-"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"POT-Creation-Date: 2025-04-13 13:00+0200\n"
+"PO-Revision-Date: 2025-04-13 13:10+0200\n"
+"Last-Translator: Turulomio <turulomio@yahoo.es>\n"
+"Language-Team: Turulomio <turulomio@yahoo.es>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,38 +30,34 @@ msgstr "El título fue encontrado con mechanize"
 
 #, python-brace-format
 msgid "Error getting page title with mechanize: {0}"
-msgstr ""
+msgstr "Error obteniendo el título de la página con mechanize: {0}"
 
 msgid "Title was found searching in <title> tag"
 msgstr "El título fue encontrado buscando en la etiqueta <title>"
 
 msgid "Error getting page title searching in <title> tag"
-msgstr ""
+msgstr "Error obteniendo el título de la página buscando en la etiqueta <title>"
 
 msgid "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."
-msgstr ""
+msgstr "Script para guardar una url en un único fichero con un nombre automático y estructurado. Usa monolith como backend."
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
-msgstr ""
+msgstr "Si te gusta esta aplicación, por favor dame una estrella en https://github.com/turulomio/save_url."
 
 msgid "Developed by Mariano Muñoz 2019-{} ©"
-msgstr ""
+msgstr "Desarrollado por Mariano Muñoz 2019-{} ©"
 
 msgid "Url to save"
 msgstr "Url a guardar"
 
 msgid "Removes date and time from the beginning of the file name"
-msgstr ""
+msgstr "Elimina la fecha y la hora del comienzo del nombre del fichero"
 
 msgid "I couldn't extract web page title. Please write it"
 msgstr "No pude extraer el título de la página web. Por favor escríbalo"
 
 msgid "Something is wrong with saved file. Please Checkit"
-msgstr ""
+msgstr "Algo va mal con el fichero guardado. Por favor compruébalo"
 
 msgid "File '{}' ({}) saved correctly."
 msgstr "Fichero '{}' ({}) guardado correctamente."
-
-#, python-brace-format
-#~ msgid "Error getting page title: {0}"
-#~ msgstr "Error al encontrar el título de la página: {0}"

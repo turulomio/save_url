@@ -21,34 +21,6 @@ For the rest of distributions:
 
 Dependencies
 ============
-* https://www.python.org/, as the main programming language.
 * https://github.com/Y2Z/monolith/, as the backend to save one url in a single file. Thank you :)
 * https://github.com/python-mechanize/mechanize, to get url title
 
-Changelog
-=========
-1.0.0 (2025-04-13)
-------------------
-- Updated to poetry>2.0.0
-- Updated poe monolith_ebuild
-
-0.7.0 (2023-10-14)
-------------------
-- Improved method to search title
-- Code is converted to a python module
-
-0.6.0 (2022-11-11)
-------------------
--  Added --notime parameter to remove date and time in file name
-
-0.5.0 (2020-07-08)
------------------
-- [#4] Script asks user if title hasn't been found.
-
-0.4.0
------
-- Script now uses mechanize to get web page title.
-
-0.1.0
------
-- Basic functionality.

@@ -1,15 +1,15 @@
-# Spanish translations for PACKAGE package
-# Traducciones al español para el paquete PACKAGE.
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# English translations for save_url package.
+# Traducciones al inglés para el paquete save_url.
+# Copyright (C) 2025 THE save_url'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the save_url package.
 #
-# root <turulomio@yahoo.es>, 2015, 2020.
+# Turulomio <turulomio@yahoo.es>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: UnoGenerator\n"
+"Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-13 13:00+0200\n"
-"PO-Revision-Date: 2020-04-03 08:54+0200\n"
+"PO-Revision-Date: 2025-04-13 13:05+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: Turulomio <turulomio@yahoo.es>\n"
 "Language: en\n"
@@ -20,44 +20,44 @@ msgstr ""
 "X-Generator: Lokalize 19.12.3\n"
 
 msgid "Monolith executable wasn't found in your system path"
-msgstr ""
+msgstr "Monolith executable wasn't found in your system path"
 
 msgid "Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith"
-msgstr ""
+msgstr "Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith"
 
 msgid "Title was found with mechanize"
-msgstr ""
+msgstr "Title was found with mechanize"
 
 #, python-brace-format
 msgid "Error getting page title with mechanize: {0}"
-msgstr ""
+msgstr "Error getting page title with mechanize: {0}"
 
 msgid "Title was found searching in <title> tag"
-msgstr ""
+msgstr "Title was found searching in <title> tag"
 
 msgid "Error getting page title searching in <title> tag"
-msgstr ""
+msgstr "Error getting page title searching in <title> tag"
 
 msgid "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."
-msgstr ""
+msgstr "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
-msgstr ""
+msgstr "If you like this app, please give me a star in https://github.com/turulomio/save_url."
 
 msgid "Developed by Mariano Muñoz 2019-{} ©"
-msgstr ""
+msgstr "Developed by Mariano Muñoz 2019-{} ©"
 
 msgid "Url to save"
-msgstr ""
+msgstr "Url to save"
 
 msgid "Removes date and time from the beginning of the file name"
-msgstr ""
+msgstr "Removes date and time from the beginning of the file name"
 
 msgid "I couldn't extract web page title. Please write it"
-msgstr ""
+msgstr "I couldn't extract web page title. Please write it"
 
 msgid "Something is wrong with saved file. Please Checkit"
-msgstr ""
+msgstr "Something is wrong with saved file. Please Checkit"
 
 msgid "File '{}' ({}) saved correctly."
-msgstr ""
+msgstr "File '{}' ({}) saved correctly."
