@@ -2,3 +2,4 @@ save_url/__pycache__/
 save_url/locale/*.po~
 .eric7project/
 .jedi/
+dist/
