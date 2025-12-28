@@ -9,15 +9,15 @@ license = {text = "GPL-3.0-only"}
 readme = "README.md"
 requires-python = ">=3.11,<4.0.0"
 dependencies = [
-    "mechanize >=0.4.8",
-    "colorama (>=0.4.6,<0.5.0)"
+    "mechanize >=0.4.10",
+    "colorama >=0.4.6"
 ]
 
 [tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poetry = "^2.1.2"
-poethepoet = "^0.33.1"
+poetry = ">=2.1.2"
+poethepoet = ">=0.39.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
