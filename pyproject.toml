@@ -16,7 +16,7 @@ dependencies = [
 [tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poetry = ">=2.3.2"
+poetry = ">=2.3.3"
 poethepoet = ">=0.41.0"
 
 [build-system]
