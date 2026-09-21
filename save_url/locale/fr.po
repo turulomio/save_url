@@ -1,5 +1,4 @@
-# Spanish translations for save_url package.
-# Traducciones al español para el paquete save_url.
+# French translations for save_url package.
 # Copyright (C) 2026 THE save_url'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the save_url package.
 #
@@ -11,58 +10,58 @@ msgstr ""
 "POT-Creation-Date: 2026-09-21 08:20+0200\n"
 "PO-Revision-Date: 2026-09-21 08:20+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
-"Language-Team: Turulomio <turulomio@yahoo.es>\n"
-"Language: es\n"
+"Language-Team: fr <turulomio@yahoo.es>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Unsupported backend '{}'"
-msgstr "Backend '{}' no soportado"
+msgstr "Backend '{}' non supporté"
 
 msgid "Executable '{}' wasn't found in your system path"
-msgstr "El ejecutable '{}' no fue encontrado en el path de tu sistema"
+msgstr "L'exécutable '{}' est introuvable dans la variable PATH de votre système"
 
 msgid "Please install {} from {}"
-msgstr "Por favor instala {} desde {}"
+msgstr "Veuillez installer {} depuis {}"
 
 msgid "Title was found with mechanize"
-msgstr "El título fue encontrado con mechanize"
+msgstr "Le titre a été trouvé avec mechanize"
 
 #, python-brace-format
 msgid "Error getting page title with mechanize: {0}"
-msgstr "Error obteniendo el título de la página con mechanize: {0}"
+msgstr "Erreur lors de la récupération du titre de la page avec mechanize : {0}"
 
 msgid "Title was found searching in <title> tag"
-msgstr "El título fue encontrado buscando en la etiqueta <title>"
+msgstr "Le titre a été trouvé en cherchant dans la balise <title>"
 
 msgid "Error getting page title searching in <title> tag"
-msgstr "Error obteniendo el título de la página buscando en la etiqueta <title>"
+msgstr "Erreur lors de la récupération du titre de la page dans la balise <title>"
 
 msgid "Script to save an url in a single file with an automatic and structured name."
-msgstr "Script para guardar una url en un único fichero con un nombre automático y estructurado."
+msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré."
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
-msgstr "Si te gusta esta aplicación, por favor dame una estrella en https://github.com/turulomio/save_url."
+msgstr "Si vous aimez cette application, donnez-moi une étoile sur https://github.com/turulomio/save_url."
 
 msgid "Developed by Mariano Muñoz 2019-{} ©"
-msgstr "Desarrollado por Mariano Muñoz 2019-{} ©"
+msgstr "Développé par Mariano Muñoz 2019-{} ©"
 
 msgid "Url to save"
-msgstr "Url a guardar"
+msgstr "URL à enregistrer"
 
 msgid "Backend to use: 'singlefile' (default) or 'monolith'"
-msgstr "Backend a usar: 'singlefile' (por defecto) o 'monolith'"
+msgstr "Backend à utiliser : 'singlefile' (par défaut) ou 'monolith'"
 
 msgid "Removes date and time from the beginning of the file name"
-msgstr "Elimina la fecha y la hora del comienzo del nombre del fichero"
+msgstr "Supprime la date et l'heure du début du nom de fichier"
 
 msgid "I couldn't extract web page title. Please write it"
-msgstr "No pude extraer el título de la página web. Por favor escríbalo"
+msgstr "Impossible d'extraire le titre de la page web. Veuillez le saisir"
 
 msgid "Something is wrong with saved file. Please Checkit"
-msgstr "Algo va mal con el fichero guardado. Por favor compruébalo"
+msgstr "Un problème est survenu avec le fichier enregistré. Veuillez le vérifier"
 
 msgid "File '{}' ({}) saved correctly."
-msgstr "Fichero '{}' ({}) guardado correctamente."
+msgstr "Fichier '{}' ({}) enregistré avec succès."

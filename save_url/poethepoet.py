@@ -1,13 +1,16 @@
-from os import system
+from os import system, makedirs
 from save_url import __version__
 
+def pytest():
+    system("pytest --cov=save_url --cov-report=term-missing")
+
 def translate():
-        #es
-        system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o save_url/locale/save_url.pot save_url/*.py")
-        system("msgmerge -N --no-wrap -U save_url/locale/es.po save_url/locale/save_url.pot")
-        system("msgmerge -N --no-wrap -U save_url/locale/en.po save_url/locale/save_url.pot")
-        system("msgfmt -cv -o save_url/locale/es/LC_MESSAGES/save_url.mo save_url/locale/es.po")
-        system("msgfmt -cv -o save_url/locale/en/LC_MESSAGES/save_url.mo save_url/locale/en.po")
+    system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o save_url/locale/save_url.pot save_url/*.py")
+    languages = ["es", "fr", "ru", "hi", "ro"]
+    for lang in languages:
+        makedirs(f"save_url/locale/{lang}/LC_MESSAGES", exist_ok=True)
+        system(f"msgmerge -N --no-wrap -U save_url/locale/{lang}.po save_url/locale/save_url.pot")
+        system(f"msgfmt -cv -o save_url/locale/{lang}/LC_MESSAGES/save_url.mo save_url/locale/{lang}.po")
 
 def release():
     print("""Nueva versión:

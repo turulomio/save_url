@@ -1,0 +1,34 @@
+/* Specific CMP cookie banner and modal hides (safe for article content) */
+#didomi-host,
+#didomi-notice,
+#didomi-popup,
+.didomi-popup-container,
+.didomi-popup-backdrop,
+#onetrust-consent-sdk,
+#onetrust-banner-sdk,
+.onetrust-pc-dark-filter,
+#onetrust-pc-sdk,
+#CybotCookiebotDialog,
+#CybotCookiebotDialogBodyUnderlay,
+#qc-cmp2-container,
+div[id^="sp_message_container_"],
+.sp_message_container,
+.fc-consent-root,
+#usercentrics-root,
+#cmpbox,
+#cmpbox2,
+#cookie-law-info-bar,
+#cookie-law-info-again {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    z-index: -999999 !important;
+}
+
+html, body {
+    overflow: auto !important;
+    position: static !important;
+}

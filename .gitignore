@@ -1,5 +1,8 @@
-save_url/__pycache__/
+**/__pycache__/
 save_url/locale/*.po~
 .eric7project/
 .jedi/
 dist/
+.coverage
+.pytest_cache/
+htmlcov/

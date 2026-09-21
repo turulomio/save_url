@@ -1,0 +1,67 @@
+# Russian translations for save_url package.
+# Copyright (C) 2026 THE save_url'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the save_url package.
+#
+# Turulomio <turulomio@yahoo.es>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: save_url\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-21 08:20+0200\n"
+"PO-Revision-Date: 2026-09-21 08:20+0200\n"
+"Last-Translator: Turulomio <turulomio@yahoo.es>\n"
+"Language-Team: ru <turulomio@yahoo.es>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Unsupported backend '{}'"
+msgstr "Неподдерживаемый бэкенд '{}'"
+
+msgid "Executable '{}' wasn't found in your system path"
+msgstr "Исполняемый файл '{}' не найден в системном пути PATH"
+
+msgid "Please install {} from {}"
+msgstr "Пожалуйста, установите {} с {}"
+
+msgid "Title was found with mechanize"
+msgstr "Заголовок был найден с помощью mechanize"
+
+#, python-brace-format
+msgid "Error getting page title with mechanize: {0}"
+msgstr "Ошибка при получении заголовка страницы с помощью mechanize: {0}"
+
+msgid "Title was found searching in <title> tag"
+msgstr "Заголовок был найден в теге <title>"
+
+msgid "Error getting page title searching in <title> tag"
+msgstr "Ошибка при получении заголовка страницы из тега <title>"
+
+msgid "Script to save an url in a single file with an automatic and structured name."
+msgstr "Скрипт для сохранения URL в один файл с автоматическим и структурированным именем."
+
+msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
+msgstr "Если вам нравится это приложение, пожалуйста, поставьте звезду на https://github.com/turulomio/save_url."
+
+msgid "Developed by Mariano Muñoz 2019-{} ©"
+msgstr "Разработано Mariano Muñoz 2019-{} ©"
+
+msgid "Url to save"
+msgstr "URL для сохранения"
+
+msgid "Backend to use: 'singlefile' (default) or 'monolith'"
+msgstr "Используемый бэкенд: 'singlefile' (по умолчанию) или 'monolith'"
+
+msgid "Removes date and time from the beginning of the file name"
+msgstr "Удаляет дату и время из начала имени файла"
+
+msgid "I couldn't extract web page title. Please write it"
+msgstr "Не удалось извлечь заголовок веб-страницы. Пожалуйста, введите его"
+
+msgid "Something is wrong with saved file. Please Checkit"
+msgstr "Что-то не так с сохраненным файлом. Пожалуйста, проверьте его"
+
+msgid "File '{}' ({}) saved correctly."
+msgstr "Файл '{}' ({}) успешно сохранен."
