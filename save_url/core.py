@@ -13,21 +13,47 @@ from shutil import which
 from sys import exit
 
 try:    
-    t=translation('save_url', files("save_url") / 'locale')
-    _=t.gettext
+    t = translation('save_url', files("save_url") / 'locale')
+    _ = t.gettext
 except:
-    _=str
+    _ = str
 
-def search_monolith():
+BACKENDS = {
+    "singlefile": {
+        "binary": "single-file",
+        "cmd": lambda bin_path, url: [bin_path, "--dump-content", url],
+        "name": "single-file-cli",
+        "url": "https://github.com/gildas-lormeau/single-file-cli",
+    },
+    "monolith": {
+        "binary": "monolith",
+        "cmd": lambda bin_path, url: [bin_path, url],
+        "name": "monolith",
+        "url": "https://github.com/Y2Z/monolith",
+    },
+}
+
+def search_backend(backend_name="singlefile"):
     """
-        Returns absolute path to monolith if exists in path. if monolith is not found exit this app
+        Returns absolute path to backend executable if exists in path. If backend is not found exit this app
     """
-    r=which("monolith")
+    if backend_name not in BACKENDS:
+        print(colors.red(_("Unsupported backend '{}'").format(backend_name)))
+        exit(2)
+        
+    cfg = BACKENDS[backend_name]
+    r = which(cfg["binary"])
     if r is None:
-        print(colors.red(_("Monolith executable wasn't found in your system path")))
-        print(colors.red(_("Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith")))
+        print(colors.red(_("Executable '{}' wasn't found in your system path").format(cfg["binary"])))
+        print(colors.red(_("Please install {} from {}").format(cfg["name"], cfg["url"])))
         exit(2) 
     return r
+
+def run_backend(url, backend_name="singlefile"):
+    bin_path = search_backend(backend_name)
+    cmd = BACKENDS[backend_name]["cmd"](bin_path, url)
+    result = run(cmd, shell=False, stdout=PIPE)
+    return result.stdout.decode("UTF-8", errors="replace"), result.returncode
 
 def humanizeFileSize(filesize):
     p = int(floor(log(filesize, 2)/10))
@@ -73,24 +99,21 @@ def getTitle(url, content):
 def console_save_url():
     parser=ArgumentParser(
             prog='save_url', 
-            description=_("Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."),
+            description=_("Script to save an url in a single file with an automatic and structured name."),
             epilog=_("If you like this app, please give me a star in https://github.com/turulomio/save_url.")+ "\n" + _("Developed by Mariano Muñoz 2019-{} ©").format( __versiondate__.year),
             formatter_class=RawTextHelpFormatter
             )
     parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
     parser.add_argument('url', help=_("Url to save"))
+    parser.add_argument('-b', '--backend', choices=['singlefile', 'monolith'], default='singlefile', help=_("Backend to use: 'singlefile' (default) or 'monolith'"))
     parser.add_argument('--notime', help=_("Removes date and time from the beginning of the file name"), action="store_true", default=False)
     args=parser.parse_args()
-    save_url(args.url, args.notime)
+    save_url(args.url, args.notime, args.backend)
 
 
-def save_url(url, notime):
+def save_url(url, notime=False, backend="singlefile"):
     init()
-    monolith_path=search_monolith()
-    
-    result=run([monolith_path, url], shell=False, stdout=PIPE)
-    content=result.stdout.decode("UTF-8")
-    
+    content, returncode = run_backend(url, backend)
     
     title=getTitle(url, content)
     
@@ -104,7 +127,7 @@ def save_url(url, notime):
     with open(filename,"w") as f:
         f.write(content)
 
-    if len(content)==0 or result.returncode!=0:
+    if len(content)==0 or returncode!=0:
         print(colors.red(_("Something is wrong with saved file. Please Checkit")))
     else:
         print(Style.BRIGHT + _("File '{}' ({}) saved correctly.").format(colors.green(filename), colors.yellow(humanizeFileSize(len(content)))) + Style.RESET_ALL)

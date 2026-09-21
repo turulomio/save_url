@@ -2,12 +2,13 @@
 # Copyright (C) 2026 THE save_url'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the save_url package.
 #
+# Turulomio <turulomio@yahoo.es>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 07:55+0200\n"
-"PO-Revision-Date: 2026-09-21 07:55+0200\n"
+"POT-Creation-Date: 2026-09-21 08:20+0200\n"
+"PO-Revision-Date: 2026-09-21 08:20+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: fr <turulomio@yahoo.es>\n"
 "Language: fr\n"
@@ -16,11 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "Monolith executable wasn't found in your system path"
-msgstr "L'exécutable Monolith est introuvable dans la variable PATH de votre système"
+msgid "Unsupported backend '{}'"
+msgstr "Backend '{}' non supporté"
 
-msgid "Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith"
-msgstr "Monolith est un outil en ligne de commande pour enregistrer des pages web complètes dans un seul fichier HTML, disponible sur https://github.com/Y2Z/monolith"
+msgid "Executable '{}' wasn't found in your system path"
+msgstr "L'exécutable '{}' est introuvable dans la variable PATH de votre système"
+
+msgid "Please install {} from {}"
+msgstr "Veuillez installer {} depuis {}"
 
 msgid "Title was found with mechanize"
 msgstr "Le titre a été trouvé avec mechanize"
@@ -35,8 +39,8 @@ msgstr "Le titre a été trouvé en cherchant dans la balise <title>"
 msgid "Error getting page title searching in <title> tag"
 msgstr "Erreur lors de la récupération du titre de la page dans la balise <title>"
 
-msgid "Script to save and url in a single file with an automatic and structured name. It uses monolith as its backend."
-msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré. Utilise monolith comme backend."
+msgid "Script to save an url in a single file with an automatic and structured name."
+msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré."
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
 msgstr "Si vous aimez cette application, donnez-moi une étoile sur https://github.com/turulomio/save_url."
@@ -46,6 +50,9 @@ msgstr "Développé par Mariano Muñoz 2019-{} ©"
 
 msgid "Url to save"
 msgstr "URL à enregistrer"
+
+msgid "Backend to use: 'singlefile' (default) or 'monolith'"
+msgstr "Backend à utiliser : 'singlefile' (par défaut) ou 'monolith'"
 
 msgid "Removes date and time from the beginning of the file name"
 msgstr "Supprime la date et l'heure du début du nom de fichier"
