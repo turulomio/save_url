@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "GPL-3.0-only"}
 readme = "README.md"
-requires-python = ">=3.11,<4.0.0"
+requires-python = ">=3.14,<4.0.0"
 dependencies = [
     "mechanize >=0.4.10",
     "colorama >=0.4.6"
@@ -16,11 +16,11 @@ dependencies = [
 [tool.poetry]
 
 [tool.poetry.group.dev.dependencies]
-poetry = ">=2.4.1"
-poethepoet = ">=0.46.0"
+poetry = ">=2.5.1"
+poethepoet = ">=0.48.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [project.urls]
