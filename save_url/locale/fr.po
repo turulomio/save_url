@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 08:20+0200\n"
+"POT-Creation-Date: 2026-09-21 10:36+0200\n"
 "PO-Revision-Date: 2026-09-21 08:20+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: fr <turulomio@yahoo.es>\n"
@@ -26,21 +26,24 @@ msgstr "L'exécutable '{}' est introuvable dans la variable PATH de votre systè
 msgid "Please install {} from {}"
 msgstr "Veuillez installer {} depuis {}"
 
+msgid "No Chromium-based browser found for single-file. Using 'monolith' backend instead."
+msgstr "Aucun navigateur basé sur Chromium n'a été trouvé pour single-file. Utilisation du backend 'monolith' à la place."
+
+msgid "No Chromium-based browser (chromium, google-chrome, brave) was found in your system path."
+msgstr "Aucun navigateur basé sur Chromium (chromium, google-chrome, brave) n'a été trouvé dans votre variable PATH."
+
+msgid "single-file-cli requires Chromium. Please install a Chromium browser or install monolith."
+msgstr "single-file-cli nécessite Chromium. Veuillez installer un navigateur Chromium ou installer monolith."
+
+msgid "Title was found searching in <title> tag"
+msgstr "Le titre a été trouvé en cherchant dans la balise <title>"
+
 msgid "Title was found with mechanize"
 msgstr "Le titre a été trouvé avec mechanize"
 
 #, python-brace-format
 msgid "Error getting page title with mechanize: {0}"
 msgstr "Erreur lors de la récupération du titre de la page avec mechanize : {0}"
-
-msgid "Title was found searching in <title> tag"
-msgstr "Le titre a été trouvé en cherchant dans la balise <title>"
-
-msgid "Error getting page title searching in <title> tag"
-msgstr "Erreur lors de la récupération du titre de la page dans la balise <title>"
-
-msgid "Script to save an url in a single file with an automatic and structured name."
-msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré."
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
 msgstr "Si vous aimez cette application, donnez-moi une étoile sur https://github.com/turulomio/save_url."
@@ -51,11 +54,17 @@ msgstr "Développé par Mariano Muñoz 2019-{} ©"
 msgid "Url to save"
 msgstr "URL à enregistrer"
 
-msgid "Backend to use: 'singlefile' (default) or 'monolith'"
-msgstr "Backend à utiliser : 'singlefile' (par défaut) ou 'monolith'"
-
 msgid "Removes date and time from the beginning of the file name"
 msgstr "Supprime la date et l'heure du début du nom de fichier"
+
+msgid "Script to save an url in a single file with an automatic and structured name. It uses monolith as its backend."
+msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré. Utilise monolith comme backend."
+
+msgid "Script to save an url in a single file with an automatic and structured name using single-file backend."
+msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré en utilisant le backend single-file."
+
+msgid "Script to save an url in a single file with an automatic and structured name using monolith backend."
+msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré en utilisant le backend monolith."
 
 msgid "I couldn't extract web page title. Please write it"
 msgstr "Impossible d'extraire le titre de la page web. Veuillez le saisir"
@@ -65,3 +74,12 @@ msgstr "Un problème est survenu avec le fichier enregistré. Veuillez le vérif
 
 msgid "File '{}' ({}) saved correctly."
 msgstr "Fichier '{}' ({}) enregistré avec succès."
+
+#~ msgid "Error getting page title searching in <title> tag"
+#~ msgstr "Erreur lors de la récupération du titre de la page dans la balise <title>"
+
+#~ msgid "Script to save an url in a single file with an automatic and structured name."
+#~ msgstr "Script pour enregistrer une URL dans un seul fichier avec un nom automatique et structuré."
+
+#~ msgid "Backend to use: 'singlefile' (default) or 'monolith'"
+#~ msgstr "Backend à utiliser : 'singlefile' (par défaut) ou 'monolith'"

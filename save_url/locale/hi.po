@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 08:20+0200\n"
+"POT-Creation-Date: 2026-09-21 10:36+0200\n"
 "PO-Revision-Date: 2026-09-21 08:20+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: hi <turulomio@yahoo.es>\n"
@@ -26,21 +26,24 @@ msgstr "आपके सिस्टम पाथ (PATH) में निष्�
 msgid "Please install {} from {}"
 msgstr "कृपया {} को {} से स्थापित करें"
 
+msgid "No Chromium-based browser found for single-file. Using 'monolith' backend instead."
+msgstr "single-file के लिए कोई Chromium-आधारित ब्राउज़र नहीं मिला। इसके बजाय 'monolith' बैकएंड का उपयोग किया जा रहा है।"
+
+msgid "No Chromium-based browser (chromium, google-chrome, brave) was found in your system path."
+msgstr "आपके सिस्टम पाथ में कोई Chromium-आधारित ब्राउज़र (chromium, google-chrome, brave) नहीं मिला।"
+
+msgid "single-file-cli requires Chromium. Please install a Chromium browser or install monolith."
+msgstr "single-file-cli को Chromium की आवश्यकता है। कृपया Chromium ब्राउज़र स्थापित करें या monolith स्थापित करें।"
+
+msgid "Title was found searching in <title> tag"
+msgstr "शीर्षक <title> टैग में खोजकर मिल गया"
+
 msgid "Title was found with mechanize"
 msgstr "शीर्षक mechanize के साथ मिल गया"
 
 #, python-brace-format
 msgid "Error getting page title with mechanize: {0}"
 msgstr "mechanize के साथ पृष्ठ शीर्षक प्राप्त करने में त्रुटि: {0}"
-
-msgid "Title was found searching in <title> tag"
-msgstr "शीर्षक <title> टैग में खोजकर मिल गया"
-
-msgid "Error getting page title searching in <title> tag"
-msgstr "<title> टैग में पृष्ठ शीर्षक खोजने में त्रुटि"
-
-msgid "Script to save an url in a single file with an automatic and structured name."
-msgstr "एक स्वचालित और संरचित नाम के साथ एकल फ़ाइल में URL सहेजने के लिए स्क्रिप्ट।"
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
 msgstr "यदि आपको यह ऐप पसंद है, तो कृपया https://github.com/turulomio/save_url पर एक स्टार दें।"
@@ -51,11 +54,17 @@ msgstr "Mariano Muñoz 2019-{} © द्वारा विकसित"
 msgid "Url to save"
 msgstr "सहेजने के लिए URL"
 
-msgid "Backend to use: 'singlefile' (default) or 'monolith'"
-msgstr "उपयोग करने के लिए बैकएंड: 'singlefile' (डिफ़ॉल्ट) या 'monolith'"
-
 msgid "Removes date and time from the beginning of the file name"
 msgstr "फ़ाइल नाम की शुरुआत से दिनांक और समय हटाता है"
+
+msgid "Script to save an url in a single file with an automatic and structured name. It uses monolith as its backend."
+msgstr "एक स्वचालित और संरचित नाम के साथ एकल फ़ाइल में URL सहेजने के लिए स्क्रिप्ट। यह monolith को अपने बैकएंड के रूप में उपयोग करता है।"
+
+msgid "Script to save an url in a single file with an automatic and structured name using single-file backend."
+msgstr "single-file बैकएंड का उपयोग करके एक स्वचालित और संरचित नाम के साथ एकल फ़ाइल में URL सहेजने के लिए स्क्रिप्ट।"
+
+msgid "Script to save an url in a single file with an automatic and structured name using monolith backend."
+msgstr "monolith बैकएंड का उपयोग करके एक स्वचालित और संरचित नाम के साथ एकल फ़ाइल में URL सहेजने के लिए स्क्रिप्ट।"
 
 msgid "I couldn't extract web page title. Please write it"
 msgstr "वेब पेज का शीर्षक निकाला नहीं जा सका। कृपया इसे लिखें"
@@ -65,3 +74,12 @@ msgstr "सहेजी गई फ़ाइल में कुछ गड़ब�
 
 msgid "File '{}' ({}) saved correctly."
 msgstr "फ़ाइल '{}' ({}) सफलतापूर्वक सहेजी गई।"
+
+#~ msgid "Error getting page title searching in <title> tag"
+#~ msgstr "<title> टैग में पृष्ठ शीर्षक खोजने में त्रुटि"
+
+#~ msgid "Script to save an url in a single file with an automatic and structured name."
+#~ msgstr "एक स्वचालित और संरचित नाम के साथ एकल फ़ाइल में URL सहेजने के लिए स्क्रिप्ट।"
+
+#~ msgid "Backend to use: 'singlefile' (default) or 'monolith'"
+#~ msgstr "उपयोग करने के लिए बैकएंड: 'singlefile' (डिफ़ॉल्ट) या 'monolith'"

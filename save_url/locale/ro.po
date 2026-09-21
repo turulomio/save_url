@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 08:20+0200\n"
+"POT-Creation-Date: 2026-09-21 10:36+0200\n"
 "PO-Revision-Date: 2026-09-21 08:20+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: ro <turulomio@yahoo.es>\n"
@@ -26,21 +26,24 @@ msgstr "Fișierul executabil '{}' nu a fost găsit în calea de sistem (PATH)"
 msgid "Please install {} from {}"
 msgstr "Vă rugăm să instalați {} de la {}"
 
+msgid "No Chromium-based browser found for single-file. Using 'monolith' backend instead."
+msgstr "Nu a fost găsit niciun browser bazat pe Chromium pentru single-file. Se utilizează backend-ul 'monolith' în schimb."
+
+msgid "No Chromium-based browser (chromium, google-chrome, brave) was found in your system path."
+msgstr "Nu a fost găsit niciun browser bazat pe Chromium (chromium, google-chrome, brave) în calea de sistem (PATH)."
+
+msgid "single-file-cli requires Chromium. Please install a Chromium browser or install monolith."
+msgstr "single-file-cli necesită Chromium. Vă rugăm să instalați un browser Chromium sau să instalați monolith."
+
+msgid "Title was found searching in <title> tag"
+msgstr "Titlul a fost găsit căutând în eticheta <title>"
+
 msgid "Title was found with mechanize"
 msgstr "Titlul a fost găsit cu mechanize"
 
 #, python-brace-format
 msgid "Error getting page title with mechanize: {0}"
 msgstr "Eroare la obținerea titlului paginii cu mechanize: {0}"
-
-msgid "Title was found searching in <title> tag"
-msgstr "Titlul a fost găsit căutând în eticheta <title>"
-
-msgid "Error getting page title searching in <title> tag"
-msgstr "Eroare la căutarea titlului paginii în eticheta <title>"
-
-msgid "Script to save an url in a single file with an automatic and structured name."
-msgstr "Script pentru salvarea unui URL într-un singur fișier cu un nume automat și structurat."
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
 msgstr "Dacă vă place această aplicație, vă rugăm să lăsați o stea pe https://github.com/turulomio/save_url."
@@ -51,11 +54,17 @@ msgstr "Dezvoltat de Mariano Muñoz 2019-{} ©"
 msgid "Url to save"
 msgstr "URL de salvat"
 
-msgid "Backend to use: 'singlefile' (default) or 'monolith'"
-msgstr "Backend de utilizat: 'singlefile' (implicit) sau 'monolith'"
-
 msgid "Removes date and time from the beginning of the file name"
 msgstr "Elimină data și ora de la începutul numelui fișierului"
+
+msgid "Script to save an url in a single file with an automatic and structured name. It uses monolith as its backend."
+msgstr "Script pentru salvarea unui URL într-un singur fișier cu un nume automat și structurat. Utilizează monolith ca backend."
+
+msgid "Script to save an url in a single file with an automatic and structured name using single-file backend."
+msgstr "Script pentru salvarea unui URL într-un singur fișier cu un nume automat și structurat utilizând backend-ul single-file."
+
+msgid "Script to save an url in a single file with an automatic and structured name using monolith backend."
+msgstr "Script pentru salvarea unui URL într-un singur fișier cu un nume automat și structurat utilizând backend-ul monolith."
 
 msgid "I couldn't extract web page title. Please write it"
 msgstr "Nu s-a putut extrage titlul paginii web. Vă rugăm să îl introduceți"
@@ -65,3 +74,12 @@ msgstr "Ceva nu este în regulă cu fișierul salvat. Vă rugăm să verificați
 
 msgid "File '{}' ({}) saved correctly."
 msgstr "Fișierul '{}' ({}) a fost salvat cu succes."
+
+#~ msgid "Error getting page title searching in <title> tag"
+#~ msgstr "Eroare la căutarea titlului paginii în eticheta <title>"
+
+#~ msgid "Script to save an url in a single file with an automatic and structured name."
+#~ msgstr "Script pentru salvarea unui URL într-un singur fișier cu un nume automat și structurat."
+
+#~ msgid "Backend to use: 'singlefile' (default) or 'monolith'"
+#~ msgstr "Backend de utilizat: 'singlefile' (implicit) sau 'monolith'"

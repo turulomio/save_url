@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 08:22+0200\n"
+"POT-Creation-Date: 2026-09-21 10:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,20 +26,23 @@ msgstr ""
 msgid "Please install {} from {}"
 msgstr ""
 
-msgid "Title was found with mechanize"
+msgid "No Chromium-based browser found for single-file. Using 'monolith' backend instead."
 msgstr ""
 
-#, python-brace-format
-msgid "Error getting page title with mechanize: {0}"
+msgid "No Chromium-based browser (chromium, google-chrome, brave) was found in your system path."
+msgstr ""
+
+msgid "single-file-cli requires Chromium. Please install a Chromium browser or install monolith."
 msgstr ""
 
 msgid "Title was found searching in <title> tag"
 msgstr ""
 
-msgid "Error getting page title searching in <title> tag"
+msgid "Title was found with mechanize"
 msgstr ""
 
-msgid "Script to save an url in a single file with an automatic and structured name."
+#, python-brace-format
+msgid "Error getting page title with mechanize: {0}"
 msgstr ""
 
 msgid "If you like this app, please give me a star in https://github.com/turulomio/save_url."
@@ -51,10 +54,16 @@ msgstr ""
 msgid "Url to save"
 msgstr ""
 
-msgid "Backend to use: 'singlefile' (default) or 'monolith'"
+msgid "Removes date and time from the beginning of the file name"
 msgstr ""
 
-msgid "Removes date and time from the beginning of the file name"
+msgid "Script to save an url in a single file with an automatic and structured name. It uses monolith as its backend."
+msgstr ""
+
+msgid "Script to save an url in a single file with an automatic and structured name using single-file backend."
+msgstr ""
+
+msgid "Script to save an url in a single file with an automatic and structured name using monolith backend."
 msgstr ""
 
 msgid "I couldn't extract web page title. Please write it"
