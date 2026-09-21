@@ -21,8 +21,8 @@ Este documento define los estándares, arquitectura, flujo de trabajo y reglas p
   - `mechanize`: Extracción de títulos de páginas web.
   - `colorama`: Inicialización y estilos de terminal.
 - **Backends de Guardado Externos:**
-  - `single-file-cli` (**Por defecto**): Renderizado completo con soporte de JavaScript moderno / SPAs.
-  - `monolith` (**Opcional**): Renderizado ultraligero y rápido en Rust sin motor de navegador.
+  - `monolith` (**Por defecto**): Renderizado ultraligero y rápido en Rust sin motor de navegador.
+  - `single-file-cli` (**Opcional**): Renderizado completo con soporte de JavaScript moderno / SPAs y supresión de banners de cookies.
 
 ---
 
@@ -85,7 +85,8 @@ poetry run poe test
 
 # Probar la CLI localmente
 poetry run save_url --help
-poetry run save_url https://www.kde.org --notime
+poetry run save_url_singlefile https://www.kde.org --notime
+poetry run save_url_monolith https://www.kde.org --notime
 
 # Tareas de release (solo al preparar versión)
 poetry run poe release

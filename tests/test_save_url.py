@@ -154,11 +154,23 @@ def test_save_url_error_content(tmp_path):
         core.save_url("https://example.com", notime=True, backend="singlefile")
         mock_red.assert_called()
 
-def test_console_save_url_args():
-    with patch("sys.argv", ["save_url", "https://example.com", "--notime", "-b", "monolith"]), \
+def test_console_save_url():
+    with patch("sys.argv", ["save_url", "https://example.com", "--notime"]), \
          patch("save_url.core.save_url") as mock_save:
         core.console_save_url()
-        mock_save.assert_called_once_with("https://example.com", True, "monolith")
+        mock_save.assert_called_once_with("https://example.com", True, backend="monolith")
+
+def test_console_save_url_singlefile():
+    with patch("sys.argv", ["save_url_singlefile", "https://example.com", "--notime"]), \
+         patch("save_url.core.save_url") as mock_save:
+        core.console_save_url_singlefile()
+        mock_save.assert_called_once_with("https://example.com", True, backend="singlefile")
+
+def test_console_save_url_monolith():
+    with patch("sys.argv", ["save_url_monolith", "https://example.com"]), \
+         patch("save_url.core.save_url") as mock_save:
+        core.console_save_url_monolith()
+        mock_save.assert_called_once_with("https://example.com", False, backend="monolith")
 
 def test_poethepoet_tasks(capsys):
     poethepoet.release()

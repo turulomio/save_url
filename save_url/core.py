@@ -79,7 +79,7 @@ BACKENDS = {
     },
 }
 
-def search_backend(backend_name="singlefile"):
+def search_backend(backend_name="monolith"):
     """
         Returns absolute path to backend executable if exists in path. If backend is not found exit this app
     """
@@ -95,7 +95,7 @@ def search_backend(backend_name="singlefile"):
         exit(2) 
     return r
 
-def run_backend(url, backend_name="singlefile"):
+def run_backend(url, backend_name="monolith"):
     if backend_name == "singlefile" and find_binary(CHROMIUM_BROWSERS) is None:
         if find_binary("monolith"):
             print(colors.yellow(_("No Chromium-based browser found for single-file. Using 'monolith' backend instead.")))
@@ -149,22 +149,34 @@ def getTitle(url, content):
 
     return None
 
-def console_save_url():
-    parser=ArgumentParser(
-            prog='save_url', 
-            description=_("Script to save an url in a single file with an automatic and structured name."),
-            epilog=_("If you like this app, please give me a star in https://github.com/turulomio/save_url.")+ "\n" + _("Developed by Mariano Muñoz 2019-{} ©").format( __versiondate__.year),
-            formatter_class=RawTextHelpFormatter
-            )
+def create_parser(prog_name, description):
+    parser = ArgumentParser(
+        prog=prog_name,
+        description=description,
+        epilog=_("If you like this app, please give me a star in https://github.com/turulomio/save_url.") + "\n" + _("Developed by Mariano Muñoz 2019-{} ©").format(__versiondate__.year),
+        formatter_class=RawTextHelpFormatter
+    )
     parser.add_argument('--version', action='version', version="{} ({})".format(__version__, __versiondate__))
     parser.add_argument('url', help=_("Url to save"))
-    parser.add_argument('-b', '--backend', choices=['singlefile', 'monolith'], default='singlefile', help=_("Backend to use: 'singlefile' (default) or 'monolith'"))
     parser.add_argument('--notime', help=_("Removes date and time from the beginning of the file name"), action="store_true", default=False)
-    args=parser.parse_args()
-    save_url(args.url, args.notime, args.backend)
+    return parser
 
+def console_save_url():
+    parser = create_parser('save_url', _("Script to save an url in a single file with an automatic and structured name. It uses monolith as its backend."))
+    args = parser.parse_args()
+    save_url(args.url, args.notime, backend="monolith")
 
-def save_url(url, notime=False, backend="singlefile"):
+def console_save_url_singlefile():
+    parser = create_parser('save_url_singlefile', _("Script to save an url in a single file with an automatic and structured name using single-file backend."))
+    args = parser.parse_args()
+    save_url(args.url, args.notime, backend="singlefile")
+
+def console_save_url_monolith():
+    parser = create_parser('save_url_monolith', _("Script to save an url in a single file with an automatic and structured name using monolith backend."))
+    args = parser.parse_args()
+    save_url(args.url, args.notime, backend="monolith")
+
+def save_url(url, notime=False, backend="monolith"):
     init()
     url = normalize_url(url)
     content, returncode = run_backend(url, backend)

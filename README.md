@@ -4,17 +4,17 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/save_url.svg)](https://pypi.org/project/save_url/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A CLI utility to save any web page into a single, self-contained HTML file with an automatic and structured filename. It uses [single-file-cli](https://github.com/gildas-lormeau/single-file-cli) as its default backend (with optional [monolith](https://github.com/Y2Z/monolith) support).
+A CLI utility to save any web page into a single, self-contained HTML file with an automatic and structured filename.
 
 ---
 
 ## ✨ Features
 
 - **Self-contained HTML**: Bundles CSS, JavaScript, images, and fonts into a single offline `.html` file.
-- **Multiple Backends**:
-  - **`singlefile`** *(default)*: High-fidelity capture supporting modern JavaScript/SPAs via `single-file-cli`.
-  - **`monolith`**: Ultra-fast, lightweight Rust-based capture without requiring a browser engine.
-- **Automatic Title Extraction**: Retrieves the page title using `mechanize` (with automatic fallback to regex search on `<title>` tag or interactive prompt).
+- **Dedicated CLI Commands**:
+  - **`save_url` / `save_url_monolith`**: Ultra-fast, lightweight Rust-based capture using `monolith` without requiring a browser engine (**default backend**).
+  - **`save_url_singlefile`**: High-fidelity capture supporting modern JavaScript/SPAs via `single-file-cli` with automatic anti-cookie banner suppression.
+- **Automatic Title Extraction**: Retrieves the page title from downloaded content (with fallback to `mechanize` or interactive prompt).
 - **Structured Filenames**: Names output files predictably by default with timestamp and page title:
   ```text
   YYYYMMDD HHMM Page Title.html
@@ -26,26 +26,28 @@ A CLI utility to save any web page into a single, self-contained HTML file with 
 
 ## 📋 Prerequisites
 
-`save_url` requires a backend executable in your system `$PATH`:
+`save_url` relies on external backend executables available in your system `$PATH`:
 
-### 1. Default Backend: SingleFile CLI (Recommended)
+### 1. Monolith (`monolith`) — Default Backend
 
-Requires Node.js and a Chromium-based browser (Chromium, Google Chrome, etc.):
+Used by `save_url` (default) and `save_url_monolith`:
 
-```bash
-npm install -g single-file-cli
-```
-
-### 2. Alternative Backend: Monolith
-
+- **Gentoo Linux**:
+  Available in [turulomio's portage repository](https://github.com/turulomio/myportage/tree/master/www-apps/monolith).
 - **Via Cargo (Rust)**:
   ```bash
   cargo install monolith
   ```
-- **Gentoo Linux**:
-  Available in [turulomio's portage repository](https://github.com/turulomio/myportage/tree/master/www-apps/monolith).
 - **Other Platforms / Prebuilt Binaries**:
   Visit the [monolith releases page](https://github.com/Y2Z/monolith/releases).
+
+### 2. SingleFile CLI (`single-file-cli`) — Alternative Backend
+
+Used by `save_url_singlefile`. Requires Node.js and a Chromium-based browser (Chromium, Google Chrome, Brave, etc.):
+
+```bash
+npm install -g single-file-cli
+```
 
 ---
 
@@ -75,12 +77,12 @@ emerge -av www-apps/save_url
 
 ## 📖 Usage
 
-### Basic Usage (SingleFile Backend)
-
-Save a web page with the default timestamp prefix using SingleFile:
+### Using Monolith Backend (`save_url` or `save_url_monolith`)
 
 ```bash
 save_url https://www.kde.org
+# o explícitamente:
+save_url_monolith https://www.kde.org
 ```
 
 **Output example:**
@@ -88,12 +90,10 @@ save_url https://www.kde.org
 20260921 0752 KDE Community Home - KDE.org.html
 ```
 
-### Use Monolith Backend
-
-To use the fast `monolith` backend instead:
+### Using SingleFile Backend (`save_url_singlefile`)
 
 ```bash
-save_url https://www.kde.org -b monolith
+save_url_singlefile https://www.kde.org
 ```
 
 ### Omit Date & Time Prefix
@@ -102,6 +102,8 @@ To save the file using only the page title:
 
 ```bash
 save_url https://www.kde.org --notime
+# o con singlefile:
+save_url_singlefile https://www.kde.org --notime
 ```
 
 **Output example:**
@@ -112,19 +114,17 @@ KDE Community Home - KDE.org.html
 ### Command-Line Options
 
 ```text
-usage: save_url [-h] [--version] [-b {singlefile,monolith}] [--notime] url
+usage: save_url [-h] [--version] [--notime] url
 
 Script to save an url in a single file with an automatic and structured name.
 
 positional arguments:
-  url                   Url to save
+  url         Url to save
 
 options:
-  -h, --help            show this help message and exit
-  --version             show program's version number and exit
-  -b, --backend {singlefile,monolith}
-                        Backend to use: 'singlefile' (default) or 'monolith'
-  --notime              Removes date and time from the beginning of the file name
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+  --notime    Removes date and time from the beginning of the file name
 ```
 
 ---
@@ -144,7 +144,7 @@ poetry install
 # Run unit tests with coverage
 poetry run poe test
 
-# Manage and compile translations
+# Manage and compile translations (Release only)
 poetry run poe translate
 ```
 
