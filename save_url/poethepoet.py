@@ -1,6 +1,9 @@
 from os import system, makedirs
 from save_url import __version__
 
+def pytest():
+    system("pytest --cov=save_url --cov-report=term-missing")
+
 def translate():
     system("xgettext -L Python --no-wrap --no-location --from-code='UTF-8' -o save_url/locale/save_url.pot save_url/*.py")
     languages = ["es", "fr", "ru", "hi", "ro"]

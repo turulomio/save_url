@@ -125,3 +125,5 @@ def test_poethepoet_tasks(capsys):
          patch("save_url.poethepoet.makedirs") as mock_dirs:
         poethepoet.translate()
         assert mock_sys.called
+        poethepoet.pytest()
+        assert mock_sys.called

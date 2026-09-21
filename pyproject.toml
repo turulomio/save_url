@@ -34,12 +34,9 @@ changelog = "https://github.com/turulomio/save_url#changelog"
 [tool.poetry.scripts]
 save_url = 'save_url.core:console_save_url'
 
-[tool.pytest.ini_options]
-addopts = "--cov=save_url --cov-report=term-missing"
-testpaths = ["tests"]
-
 [tool.poe.tasks]
 release = { script = "save_url.poethepoet:release" }
 translate = { script = "save_url.poethepoet:translate" }
 monolith_ebuild = { script = "save_url.poethepoet:monolith_ebuild" }
-test = "pytest"
+pytest = { script = "save_url.poethepoet:pytest" }
+test = { script = "save_url.poethepoet:pytest" }
