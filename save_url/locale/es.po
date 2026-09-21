@@ -1,15 +1,15 @@
 # Spanish translations for save_url package.
 # Traducciones al español para el paquete save_url.
-# Copyright (C) 2025 THE save_url'S COPYRIGHT HOLDER
+# Copyright (C) 2026 THE save_url'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the save_url package.
 #
-# Turulomio <turulomio@yahoo.es>, 2025.
+# Turulomio <turulomio@yahoo.es>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: save_url\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-13 13:00+0200\n"
-"PO-Revision-Date: 2025-04-13 13:10+0200\n"
+"POT-Creation-Date: 2026-09-21 07:55+0200\n"
+"PO-Revision-Date: 2026-09-21 07:57+0200\n"
 "Last-Translator: Turulomio <turulomio@yahoo.es>\n"
 "Language-Team: Turulomio <turulomio@yahoo.es>\n"
 "Language: es\n"
@@ -17,7 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.12.3\n"
 
 msgid "Monolith executable wasn't found in your system path"
 msgstr "El ejecutable de Monolith no fue encontrado en el path de tu sistema"

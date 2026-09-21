@@ -1,11 +1,12 @@
 from argparse import ArgumentParser, RawTextHelpFormatter
 from subprocess import run, PIPE
 from datetime import datetime
-from colorama import Fore, Style, init
+from colorama import init, Style
 from gettext import translation
 from importlib.resources import files
 from math import floor, pow, log
 from mechanize import Browser
+from pydicts import colors, casts
 from re import compile
 from save_url import __version__, __versiondate__
 from shutil import which
@@ -17,33 +18,16 @@ try:
 except:
     _=str
 
-def red(s):
-        return Fore.RED + Style.BRIGHT + s + Style.RESET_ALL
-        
-def green(s):
-        return Fore.GREEN + Style.BRIGHT + s + Style.RESET_ALL
-
-def yellow(s):
-        return Fore.YELLOW+ Style.BRIGHT + s + Style.RESET_ALL
-
 def search_monolith():
     """
         Returns absolute path to monolith if exists in path. if monolith is not found exit this app
     """
     r=which("monolith")
     if r is None:
-        print(red(_("Monolith executable wasn't found in your system path")))
-        print(red(_("Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith")))
+        print(colors.red(_("Monolith executable wasn't found in your system path")))
+        print(colors.red(_("Monolith is a CLI tool for saving complete web pages as a single HTML file that you can find in https://github.com/Y2Z/monolith")))
         exit(2) 
     return r
-
-def dtnaive2string(dt, type=1):
-    if dt==None:
-        resultado="None"
-    elif type==1:
-            resultado="{}{}{} {}{}".format(dt.year, str(dt.month).zfill(2), str(dt.day).zfill(2), str(dt.hour).zfill(2), str(dt.minute).zfill(2))
-    return resultado
-
 
 def humanizeFileSize(filesize):
     p = int(floor(log(filesize, 2)/10))
@@ -69,9 +53,9 @@ def getTitle(url, content):
         title=title.replace("\n","")
         title=title.replace("/","")
         title=title.strip()
-        print(yellow(_("Title was found with mechanize")))
+        print(colors.yellow(_("Title was found with mechanize")))
     except Exception as e:
-        print(red(_("Error getting page title with mechanize: {0}").format(e)))
+        print(colors.red(_("Error getting page title with mechanize: {0}").format(e)))
         title=None
         
     #Tries to get it using re
@@ -80,10 +64,10 @@ def getTitle(url, content):
         res=pattern.findall(content)
         if len(res)>0:
             title=res[0]
-            print(yellow(_("Title was found searching in <title> tag")))
+            print(colors.yellow(_("Title was found searching in <title> tag")))
         else:
             title=None
-            print(red(_("Error getting page title searching in <title> tag")))
+            print(colors.red(_("Error getting page title searching in <title> tag")))
     return title
 
 def console_save_url():
@@ -115,12 +99,12 @@ def save_url(url, notime):
     if notime:
         filename="{}.html".format(title[:114])
     else:
-        filename="{} {}.html".format(dtnaive2string(datetime.now()), title[:100])
+        filename="{} {}.html".format(casts.dtnaive2str(datetime.now(), "%Y%m%d %H%M"), title[:100])
 
     with open(filename,"w") as f:
         f.write(content)
 
     if len(content)==0 or result.returncode!=0:
-        print(red(_("Something is wrong with saved file. Please Checkit")))
+        print(colors.red(_("Something is wrong with saved file. Please Checkit")))
     else:
-        print (Style.BRIGHT + _("File '{}' ({}) saved correctly.").format(Fore.GREEN + filename + Fore.RESET, Fore.YELLOW + humanizeFileSize(len(content)) + Fore.RESET ) + Style.RESET_ALL)
+        print(Style.BRIGHT + _("File '{}' ({}) saved correctly.").format(colors.green(filename), colors.yellow(humanizeFileSize(len(content)))) + Style.RESET_ALL)

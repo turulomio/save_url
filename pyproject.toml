@@ -10,7 +10,8 @@ readme = "README.md"
 requires-python = ">=3.14,<4.0.0"
 dependencies = [
     "mechanize >=0.4.10",
-    "colorama >=0.4.6"
+    "colorama >=0.4.6",
+    "pydicts (>=1.5.0,<2.0.0)"
 ]
 
 [tool.poetry]
