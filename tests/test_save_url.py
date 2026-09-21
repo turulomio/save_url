@@ -29,35 +29,83 @@ def test_search_backend_missing():
             core.search_backend("singlefile")
         assert exc_info.value.code == 2
 
-def test_run_backend():
+def test_normalize_url():
+    assert core.normalize_url("www.kde.org") == "https://www.kde.org"
+    assert core.normalize_url("https://www.kde.org") == "https://www.kde.org"
+    assert core.normalize_url("http://example.com") == "http://example.com"
+
+def test_find_binary():
+    with patch("save_url.core.which", side_effect=lambda b: "/usr/bin/chromium" if b == "chromium" else None):
+        assert core.find_binary("chromium") == "/usr/bin/chromium"
+        assert core.find_binary(["nonexistent", "chromium"]) == "/usr/bin/chromium"
+
+    with patch("save_url.core.which", return_value=None):
+        assert core.find_binary(["nonexistent1", "nonexistent2"]) is None
+
+def test_run_backend_with_browser():
     mock_result = MagicMock()
     mock_result.stdout = b"<html><head><title>Test</title></head><body>Hello</body></html>"
     mock_result.returncode = 0
 
     with patch("save_url.core.search_backend", return_value="/usr/bin/single-file"), \
+         patch("save_url.core.find_binary", side_effect=lambda names: "/usr/bin/chromium" if "chromium" in names else "/usr/bin/single-file"), \
+         patch("save_url.core.run", return_value=mock_result) as mock_run:
+        content, code = core.run_backend("https://example.com", "singlefile")
+        args, kwargs = mock_run.call_args
+        cmd = args[0]
+        assert cmd[0] == "/usr/bin/single-file"
+        assert "--browser-executable-path=/usr/bin/chromium" in cmd
+        assert any(arg.startswith("--browser-script=") for arg in cmd)
+        assert any(arg.startswith("--browser-stylesheet=") for arg in cmd)
+        assert "--dump-content" in cmd
+        assert "https://example.com" in cmd
+
+def test_run_backend_monolith():
+    mock_result = MagicMock()
+    mock_result.stdout = b"<html><head><title>Test</title></head><body>Hello</body></html>"
+    mock_result.returncode = 0
+
+    with patch("save_url.core.search_backend", return_value="/usr/bin/monolith"), \
+         patch("save_url.core.run", return_value=mock_result) as mock_run:
+        content, code = core.run_backend("https://example.com", "monolith")
+        assert "Hello" in content
+        assert code == 0
+        mock_run.assert_called_once_with(["/usr/bin/monolith", "https://example.com"], shell=False, stdout=core.PIPE)
+
+def test_run_backend_fallback_to_monolith():
+    mock_result = MagicMock()
+    mock_result.stdout = b"<html><head><title>Test</title></head><body>Hello</body></html>"
+    mock_result.returncode = 0
+
+    with patch("save_url.core.find_binary", side_effect=lambda names: "/usr/bin/monolith" if "monolith" in names else None), \
+         patch("save_url.core.search_backend", return_value="/usr/bin/monolith"), \
          patch("save_url.core.run", return_value=mock_result) as mock_run:
         content, code = core.run_backend("https://example.com", "singlefile")
         assert "Hello" in content
         assert code == 0
-        mock_run.assert_called_once_with(["/usr/bin/single-file", "--dump-content", "https://example.com"], shell=False, stdout=core.PIPE)
+        mock_run.assert_called_once_with(["/usr/bin/monolith", "https://example.com"], shell=False, stdout=core.PIPE)
+
+def test_run_backend_no_browser_no_monolith():
+    with patch("save_url.core.find_binary", return_value=None):
+        with pytest.raises(SystemExit) as exc_info:
+            core.run_backend("https://example.com", "singlefile")
+        assert exc_info.value.code == 2
+
+def test_getTitle_from_content():
+    html = "<html><head><title>Direct Title</title></head></html>"
+    title = core.getTitle("https://example.com", html)
+    assert title == "Direct Title"
 
 def test_getTitle_mechanize():
     mock_browser = MagicMock()
     mock_browser.title.return_value = "Example Title\n/ "
     with patch("save_url.core.Browser", return_value=mock_browser):
-        title = core.getTitle("https://example.com", "<html></html>")
+        title = core.getTitle("https://example.com", "")
         assert title == "Example Title"
-
-def test_getTitle_regex_fallback():
-    with patch("save_url.core.Browser", side_effect=Exception("Browser failed")):
-        html = "<html><head><title>Fallback Title</title></head></html>"
-        title = core.getTitle("https://example.com", html)
-        assert title == "Fallback Title"
 
 def test_getTitle_none():
     with patch("save_url.core.Browser", side_effect=Exception("Browser failed")):
-        html = "<html><head></head></html>"
-        title = core.getTitle("https://example.com", html)
+        title = core.getTitle("https://example.com", "<html><head></head></html>")
         assert title is None
 
 def test_input_string():

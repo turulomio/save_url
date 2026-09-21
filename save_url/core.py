@@ -18,15 +18,61 @@ try:
 except:
     _ = str
 
+CHROMIUM_BROWSERS = [
+    "chromium",
+    "chromium-browser",
+    "google-chrome-stable",
+    "google-chrome",
+    "chrome",
+    "brave-browser",
+    "brave",
+    "microsoft-edge",
+    "microsoft-edge-stable",
+    "vivaldi",
+]
+
+def find_binary(names):
+    """
+    Searches for the first available binary name or list of names in the system PATH.
+    Returns the absolute path if found, or None.
+    """
+    if isinstance(names, str):
+        names = [names]
+    for name in names:
+        path = which(name)
+        if path:
+            return path
+    return None
+
+def normalize_url(url):
+    """
+    Ensures URL has a schema (defaults to https://).
+    """
+    if not (url.startswith("http://") or url.startswith("https://")):
+        return f"https://{url}"
+    return url
+
+def get_singlefile_cmd(bin_path, url):
+    cmd = [bin_path]
+    browser = find_binary(CHROMIUM_BROWSERS)
+    if browser:
+        cmd.append(f"--browser-executable-path={browser}")
+    script_path = str(files("save_url") / "anti_cookie.js")
+    css_path = str(files("save_url") / "anti_cookie.css")
+    cmd.append(f"--browser-script={script_path}")
+    cmd.append(f"--browser-stylesheet={css_path}")
+    cmd.extend(["--dump-content", url])
+    return cmd
+
 BACKENDS = {
     "singlefile": {
-        "binary": "single-file",
-        "cmd": lambda bin_path, url: [bin_path, "--dump-content", url],
+        "binaries": ["single-file", "single-file-cli"],
+        "cmd": get_singlefile_cmd,
         "name": "single-file-cli",
         "url": "https://github.com/gildas-lormeau/single-file-cli",
     },
     "monolith": {
-        "binary": "monolith",
+        "binaries": ["monolith"],
         "cmd": lambda bin_path, url: [bin_path, url],
         "name": "monolith",
         "url": "https://github.com/Y2Z/monolith",
@@ -42,14 +88,23 @@ def search_backend(backend_name="singlefile"):
         exit(2)
         
     cfg = BACKENDS[backend_name]
-    r = which(cfg["binary"])
+    r = find_binary(cfg["binaries"])
     if r is None:
-        print(colors.red(_("Executable '{}' wasn't found in your system path").format(cfg["binary"])))
+        print(colors.red(_("Executable '{}' wasn't found in your system path").format(cfg["binaries"][0])))
         print(colors.red(_("Please install {} from {}").format(cfg["name"], cfg["url"])))
         exit(2) 
     return r
 
 def run_backend(url, backend_name="singlefile"):
+    if backend_name == "singlefile" and find_binary(CHROMIUM_BROWSERS) is None:
+        if find_binary("monolith"):
+            print(colors.yellow(_("No Chromium-based browser found for single-file. Using 'monolith' backend instead.")))
+            backend_name = "monolith"
+        else:
+            print(colors.red(_("No Chromium-based browser (chromium, google-chrome, brave) was found in your system path.")))
+            print(colors.red(_("single-file-cli requires Chromium. Please install a Chromium browser or install monolith.")))
+            exit(2)
+
     bin_path = search_backend(backend_name)
     cmd = BACKENDS[backend_name]["cmd"](bin_path, url)
     result = run(cmd, shell=False, stdout=PIPE)
@@ -71,30 +126,28 @@ def input_string(text):
             pass
 
 def getTitle(url, content):
-    #Tries to get it using mechanize
+    # Try searching in downloaded HTML content first (fast & offline)
+    if content:
+        pattern = compile(r"(?i)<title[^>]*>(.*?)</title>")
+        res = pattern.findall(content)
+        if len(res) > 0 and res[0].strip():
+            title = res[0].replace("\n", "").replace("/", "").strip()
+            print(colors.yellow(_("Title was found searching in <title> tag")))
+            return title
+
+    # Fallback to mechanize
     try:
         br = Browser()
         br.open(url)
-        title=br.title()
-        title=title.replace("\n","")
-        title=title.replace("/","")
-        title=title.strip()
-        print(colors.yellow(_("Title was found with mechanize")))
+        title = br.title()
+        if title:
+            title = title.replace("\n", "").replace("/", "").strip()
+            print(colors.yellow(_("Title was found with mechanize")))
+            return title
     except Exception as e:
         print(colors.red(_("Error getting page title with mechanize: {0}").format(e)))
-        title=None
-        
-    #Tries to get it using re
-    if title is None:
-        pattern=compile("(?<=<title>)(.*?)(?=</title>)")
-        res=pattern.findall(content)
-        if len(res)>0:
-            title=res[0]
-            print(colors.yellow(_("Title was found searching in <title> tag")))
-        else:
-            title=None
-            print(colors.red(_("Error getting page title searching in <title> tag")))
-    return title
+
+    return None
 
 def console_save_url():
     parser=ArgumentParser(
@@ -113,6 +166,7 @@ def console_save_url():
 
 def save_url(url, notime=False, backend="singlefile"):
     init()
+    url = normalize_url(url)
     content, returncode = run_backend(url, backend)
     
     title=getTitle(url, content)
